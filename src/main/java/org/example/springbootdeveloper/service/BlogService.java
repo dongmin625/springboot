@@ -23,4 +23,15 @@ public class BlogService {
     public List<Article> findAll(){
         return blogRepository.findAll();
     }
+
+    //데이터베이스에 저장되어 있는 글의 ID를 이용해 글을 조회
+    public Article findById(long id) {
+        return blogRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("not found: + id"));
+    }
+
+    //데이터베이스에 저장되어 있는 글의 ID를 이용해 글을 삭제
+    public void delete(long id) {
+        blogRepository.deleteById(id);
+    }
 }
